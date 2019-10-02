@@ -51,51 +51,39 @@
             //Initialize firestore
             const testDb = firebase.firestore().collection('testDb')
 
+            // Declare variables and their default values
             let name = 'No Input'
             let email = 'No input'
                 
-            if(localStorage.getItem('email') !== null ){
+            if(localStorage.getItem('email') !== null ){//if localStorage has key 'email'
                 console.log(`This is exists in localStorage.getItem('email') ${localStorage.getItem('email')}`)
-                testDb.doc(localStorage.getItem('email'))
+                testDb.doc(localStorage.getItem('email'))//grab the data in doc('email')
                     .get()
                     .then(r => {
-                        if(r.exists){
+                        if(r.exists){//if there is data in the document
                             console.log("r.exsits is", r.exists);
                             name = r.data().displayName
                             console.log(`name is now ${name}`)
                             email = r.data().email
                             console.log(`email is now ${email}`)
                         }
-                        else{
+                        else{// else console log that r.exists is false
                             console.log("r.exsits is", r.exists);
                         }
 
+                        //If r.exists is true, update the DOM with the following info
                         document.getElementById('name').textContent = name
                         document.getElementById('email').textContent = email
                     })
-                    .catch(e => {
+                    .catch(e => {//if something goes wrong after trying to get the info from doc('email')
                         console.log('An error has occured')
                         console.log(e.message)
                     })
-            } else {
+            } else {// if localStorate.getItem('email') doesn't exist do the following below
                 console.log(`localStorage.getItem('email') is ${localStorage.getItem('email')}`)
                 document.getElementById('name').textContent = name
                 document.getElementById('email').textContent = email
             }
-
-            // let profileDiv = document.createElement('div')
-            // profileDiv.className = 'card'
-            // profileDiv.innerHTML = `
-            //     <div class='card-content'>
-            //         <p>
-            //             Name: ${name}
-            //         </p>
-            //         <p>
-            //             Email: ${email}
-            //         </p>
-            //     </div>
-            // `
-            // document.getElementById('personalInfo').append(profileDiv)
                 
         </script>
     </body>
