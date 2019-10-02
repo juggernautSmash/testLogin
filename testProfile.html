@@ -45,7 +45,7 @@
                 let name = 'No Name'
                 let email = 'No Email'
                 
-                if(localStorage.getItem('email').exists){
+                if(localStorage.getItem('email') !== null ){
                     testDb.doc(`${localStorage.getItem('email')}`)
                         .get()
                         .then(r => {
