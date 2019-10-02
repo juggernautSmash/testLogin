@@ -42,13 +42,16 @@
             const testDb = firebase.firestore().collections('testDb')
 
             const generateProfile = () => {
-                //let name = 
+                let name = 'No Name'
+                let email = 'No Email'
                 
                 testDb.doc(localStorage.getItem('email'))
                     .get()
-                    .then(data => {
-                        if(doc.exists){
-                            console.log("Document data:", data.data());
+                    .then(r => {
+                        if(r.exists){
+                            //console.log("Document data:", r.data());
+                            let name = r.data().displayName
+                            let email = r.data().email
                         }
                     })
 
@@ -58,11 +61,16 @@
                 profileDiv.innerHTML = `
                     <div class='card-content'>
                         <p>
-                            Name:
+                            Name: ${name}
                         </p>
+                        <p>
+                            Email: $${email}
                     <div>
                 `
+                document.getElementById('personalInfo').append(profileDiv)
             }
+
+            generateProfile();
         </script>
     </body>
 </html>

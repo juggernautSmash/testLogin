@@ -96,8 +96,10 @@
               document.getElementById('sign-in-status').textContent = 'Signed in';
               document.getElementById('sign-in').textContent = 'Sign out';
               document.getElementById('account-details').textContent = JSON.stringify(userObj, null, '  ')
-
+            
+            //push user info to firestore
             testDb.collection('testDb').doc(email).set(userObj)
+            //push email to localStorage
             localStorage.setItem('email', userObj.email)
 
             });
@@ -106,6 +108,8 @@
             document.getElementById('sign-in-status').textContent = 'Signed out';
             document.getElementById('sign-in').textContent = 'Sign in';
             document.getElementById('account-details').textContent = 'null';
+            
+            localStorage.removeItem('email')
           }
         }, function(error) {
           console.log(error);
