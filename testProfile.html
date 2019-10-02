@@ -41,8 +41,6 @@
             //Initialize firestore
             const testDb = firebase.firestore().collection('testDb')
 
-            const generateProfile = () => {
-                console.log('running generateProfile')
                 let name = ''
                 let email = ''
                 
@@ -59,6 +57,7 @@
                                 console.log(`email is now ${email}`)
                             }
                             else{
+                                console.log("r.exsits is", r.exists);
                                 name = 'No Name'
                                 console.log(`name is now ${name}`)
                                 email = 'No Email'
@@ -69,6 +68,8 @@
                             console.log('An error has occured')
                             console.log(e.message)
                         })
+                } else {
+                    console.log(`localStorage.getItem('email') is ${localStorage.getItem('email')}`);
                 }
 
                 let profileDiv = document.createElement('div')
@@ -83,9 +84,7 @@
                     <div>
                 `
                 document.getElementById('personalInfo').append(profileDiv)
-            }
-
-            generateProfile();
+                
         </script>
     </body>
 </html>
