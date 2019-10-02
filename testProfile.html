@@ -48,13 +48,15 @@
                 
                 if(localStorage.getItem('email') !== null ){
                     console.log(`This is exists in localStorage.getItem('email') ${localStorage.getItem('email')}`)
-                    testDb.doc(`${localStorage.getItem('email')}`)
+                    testDb.doc(localStorage.getItem('email'))
                         .get()
                         .then(r => {
                             if(r.exists){
                                 console.log("r.exsits is", r.exists);
                                 name = r.data().displayName
+                                console.log(`name is now ${name}`)
                                 email = r.data().email
+                                console.log(`email is now ${email}`)
                             }
                         })
                 }
