@@ -42,10 +42,12 @@
             const testDb = firebase.firestore()
 
             const generateProfile = () => {
+                console.log('running generateProfile')
                 let name = 'No Name'
                 let email = 'No Email'
                 
                 if(localStorage.getItem('email') !== null ){
+                    console.log(`This is exists in localStorage.getItem('email') ${localStorage.getItem('email')}`)
                     testDb.doc(`${localStorage.getItem('email')}`)
                         .get()
                         .then(r => {
@@ -65,7 +67,7 @@
                             Name: ${name}
                         </p>
                         <p>
-                            Email: $${email}
+                            Email: ${email}
                     <div>
                 `
                 document.getElementById('personalInfo').append(profileDiv)
