@@ -17,9 +17,10 @@
   <div id="sign-in"></div>
   <pre id="account-details"></pre>
   
-  <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-auth.js"></script>
   <script src="https://cdn.firebase.com/libs/firebaseui/4.2.0/firebaseui.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-firestore.js"></script>
   <script type="text/javascript">
     const config = {
       apiKey: 'AIzaSyDsLTa3YjB1d4hdeMyNcrGckNxokqiZQKQ',
@@ -31,7 +32,10 @@
       appId: '1:334083568172:web:2c185cd886d1d1b35ad789'
     }
 
+    //Initialize firebase
     firebase.initializeApp(config)
+    //Initialize firestore
+    const testDb = firebase.firestore()
 
     // FirebaseUI config.
     const uiConfig = {
@@ -87,6 +91,8 @@
                 accessToken: accessToken,
                 providerData: providerData
               }, null, '  ');
+            testDb.collection('testDb').doc(email).set(user)
+
             });
           } else {
             // User is signed out.
