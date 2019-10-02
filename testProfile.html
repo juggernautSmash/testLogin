@@ -43,8 +43,8 @@
 
             const generateProfile = () => {
                 console.log('running generateProfile')
-                let name = 'No Name'
-                let email = 'No Email'
+                let name = ''
+                let email = ''
                 
                 if(localStorage.getItem('email') !== null ){
                     console.log(`This is exists in localStorage.getItem('email') ${localStorage.getItem('email')}`)
@@ -58,6 +58,16 @@
                                 email = r.data().email
                                 console.log(`email is now ${email}`)
                             }
+                            else{
+                                name = 'No Name'
+                                console.log(`name is now ${name}`)
+                                email = 'No Email'
+                                console.log(`email is now ${email}`)
+                            }
+                        })
+                        .catch(e => {
+                            console.log('An error has occured')
+                            console.log(e.message)
                         })
                 }
 
