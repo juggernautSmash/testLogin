@@ -98,6 +98,7 @@
               document.getElementById('account-details').textContent = JSON.stringify(userObj, null, '  ')
 
             testDb.collection('testDb').doc(email).set(userObj)
+            localStorage.setItem('email', userObj.email)
 
             });
           } else {
