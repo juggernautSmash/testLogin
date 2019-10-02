@@ -39,7 +39,7 @@
             //Initialize firebase
             firebase.initializeApp(config)
             //Initialize firestore
-            const testDb = firebase.firestore().collections('testDb')
+            const testDb = firebase.firestore()
 
             const generateProfile = () => {
                 let name = 'No Name'
