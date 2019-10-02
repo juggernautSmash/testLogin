@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
+        <title>Test Profile</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
            <!-- Compiled and minified CSS for Materialize -->
@@ -45,16 +45,17 @@
                 let name = 'No Name'
                 let email = 'No Email'
                 
-                testDb.doc(localStorage.getItem('email'))
-                    .get()
-                    .then(r => {
-                        if(r.exists){
-                            //console.log("Document data:", r.data());
-                            let name = r.data().displayName
-                            let email = r.data().email
-                        }
-                    })
-
+                if(localStorage.getItem('email').exists){
+                    testDb.doc(`${localStorage.getItem('email')}`)
+                        .get()
+                        .then(r => {
+                            if(r.exists){
+                                //console.log("Document data:", r.data());
+                                let name = r.data().displayName
+                                let email = r.data().email
+                            }
+                        })
+                }
 
                 let profileDiv = document.createElement('div')
                 profileDiv.className = 'card'
