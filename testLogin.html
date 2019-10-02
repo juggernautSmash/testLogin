@@ -5,12 +5,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>Test Login</title>
   <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/4.2.0/firebaseui.css" />
 </head>
 
 <body>
-  <h1>Welcome to My Awesome App</h1>
+  <h1>Log in Test</h1>
   <div id="firebaseui-auth-container"></div>
   <button id="signOut">Sign Out</button>
   <div id="sign-in-status"></div>
@@ -79,7 +79,7 @@
             let phoneNumber = user.phoneNumber;
             let providerData = user.providerData;
 
-            let userObj = JSON.stringify({
+            let userObj = {
                 displayName: displayName,
                 email: email,
                 emailVerified: emailVerified,
@@ -88,12 +88,12 @@
                 uid: uid,
                 accessToken: accessToken,
                 providerData: providerData
-              }, null, '  ');
+              }
 
             user.getIdToken().then(function(accessToken) {
               document.getElementById('sign-in-status').textContent = 'Signed in';
               document.getElementById('sign-in').textContent = 'Sign out';
-              document.getElementById('account-details').textContent = userObj
+              document.getElementById('account-details').textContent = JSON.stringify(userObj, null, '  ')
 
             testDb.collection('testDb').doc(email).set(userObj)
 
