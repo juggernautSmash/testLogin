@@ -13,7 +13,7 @@
         <div class="container">
             <h1>My Profile</h1>
             <div id="personalInfo" class="row">
-                <h2>Personal Info:</h2>
+                <h2>Personal Info:</h2>                
             </div>
         </div>
         <!-- Materialize JS -->
@@ -41,49 +41,50 @@
             //Initialize firestore
             const testDb = firebase.firestore().collection('testDb')
 
-                let name = ''
-                let email = ''
+            let name = ''
+            let email = ''
                 
-                if(localStorage.getItem('email') !== null ){
-                    console.log(`This is exists in localStorage.getItem('email') ${localStorage.getItem('email')}`)
-                    testDb.doc(localStorage.getItem('email'))
-                        .get()
-                        .then(r => {
-                            if(r.exists){
-                                console.log("r.exsits is", r.exists);
-                                name = r.data().displayName
-                                console.log(`name is now ${name}`)
-                                email = r.data().email
-                                console.log(`email is now ${email}`)
-                            }
-                            else{
-                                console.log("r.exsits is", r.exists);
-                                name = 'No Name'
-                                console.log(`name is now ${name}`)
-                                email = 'No Email'
-                                console.log(`email is now ${email}`)
-                            }
-                        })
-                        .catch(e => {
-                            console.log('An error has occured')
-                            console.log(e.message)
-                        })
-                } else {
-                    console.log(`localStorage.getItem('email') is ${localStorage.getItem('email')}`);
-                }
+            if(localStorage.getItem('email') !== null ){
+                console.log(`This is exists in localStorage.getItem('email') ${localStorage.getItem('email')}`)
+                testDb.doc(localStorage.getItem('email'))
+                    .get()
+                    .then(r => {
+                        if(r.exists){
+                            console.log("r.exsits is", r.exists);
+                            name = r.data().displayName
+                            console.log(`name is now ${name}`)
+                            email = r.data().email
+                            console.log(`email is now ${email}`)
+                        }
+                        else{
+                            console.log("r.exsits is", r.exists);
+                            name = 'No Name'
+                            console.log(`name is now ${name}`)
+                            email = 'No Email'
+                            console.log(`email is now ${email}`)
+                        }
+                    })
+                    .catch(e => {
+                        console.log('An error has occured')
+                        console.log(e.message)
+                    })
+            } else {
+                console.log(`localStorage.getItem('email') is ${localStorage.getItem('email')}`);
+            }
 
-                let profileDiv = document.createElement('div')
-                profileDiv.className = 'card'
-                profileDiv.innerHTML = `
-                    <div class='card-content'>
-                        <p>
-                            Name: ${name}
-                        </p>
-                        <p>
-                            Email: ${email}
-                    <div>
-                `
-                document.getElementById('personalInfo').append(profileDiv)
+            let profileDiv = document.createElement('div')
+            profileDiv.className = 'card'
+            profileDiv.innerHTML = `
+                <div class='card-content'>
+                    <p>
+                        Name: ${name}
+                    </p>
+                    <p>
+                        Email: ${email}
+                    </p>
+                <div>
+            `
+            document.getElementById('personalInfo').append(profileDiv)
                 
         </script>
     </body>
