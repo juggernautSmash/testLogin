@@ -39,7 +39,7 @@
             //Initialize firebase
             firebase.initializeApp(config)
             //Initialize firestore
-            const testDb = firebase.firestore()
+            const testDb = firebase.firestore().collection('testDb')
 
             const generateProfile = () => {
                 console.log('running generateProfile')
@@ -48,7 +48,8 @@
                 
                 if(localStorage.getItem('email') !== null ){
                     console.log(`This is exists in localStorage.getItem('email') ${localStorage.getItem('email')}`)
-                    testDb.doc(`${localStorage.getItem('email')}`)
+                    testDb.collections('testDb')
+                        .doc(`${localStorage.getItem('email')}`)
                         .get()
                         .then(r => {
                             if(r.exists){
